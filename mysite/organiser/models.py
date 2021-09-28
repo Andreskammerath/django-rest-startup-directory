@@ -1,13 +1,15 @@
 from django.db import models
+from django_extensions.db.fields import AutoSlugField
 
 class Tag(models.Model):
     name = models.CharField(
         max_length=31,
         unique=True)
-    slug = models.SlugField(
+    slug = AutoSlugField(
         max_length=31,
         unique=True,
-        help_text='A label for URL config.')
+        help_text='A label for URL config.',
+        populate_from=['name'])
 
     class Meta:
         ordering = ['name']
