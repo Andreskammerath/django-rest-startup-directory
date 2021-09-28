@@ -37,12 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #third party
+    # third party
     'rest_framework',
-    'django-extensions',
+    'django_extensions',
     # first party
     'blog.apps.BlogConfig',
-    'organiser.apps.OrganizerConfig',
+    'organiser.apps.OrganiserConfig',
 ]
 
 MIDDLEWARE = [
