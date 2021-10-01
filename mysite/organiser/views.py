@@ -13,8 +13,8 @@ from organiser.models import Tag
 class TagAPIDetail(APIView):
     'Return JSON for single Tag Object'
 
-    def get(self, request, pk):
-        tag = get_object_or_404(Tag, pk=pk)
+    def get(self, request, slug):
+        tag = get_object_or_404(Tag, slug=slug)
         s_tag = TagSerializer(tag, context={'request': request})
         return Response(s_tag.data)
 

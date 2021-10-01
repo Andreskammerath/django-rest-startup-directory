@@ -4,12 +4,13 @@ from organiser.models import Tag, Startup, NewsLink
 class TagSerializer(ModelSerializer):
     
     url = HyperlinkedIdentityField(
+        lookup_field='slug',
         view_name='api_tag_detail'
     )
 
     class Meta:
         model = Tag
-        fields = '__all__'
+        exclude = ('id',)
 
 class StartupSerializer(ModelSerializer):
     
