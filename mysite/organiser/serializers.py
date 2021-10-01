@@ -13,17 +13,25 @@ class TagSerializer(ModelSerializer):
         exclude = ('id',)
 
 class StartupSerializer(ModelSerializer):
-    
+
+    url = HyperlinkedIdentityField(
+        lookup_field='slug',
+        view_name='api_startup_detail'
+    )
     tags = TagSerializer(many=True)
 
     class Meta:
         model = Startup
-        fields = '__all__'
+        exclude = ('id',)
 
 class NewsLinkSerializer(ModelSerializer):
 
+    url = HyperlinkedIdentityField(
+        lookup_field='slug',
+        view_name='api_newslink_detail'
+    )
     startup = StartupSerializer()
 
     class Meta:
         model = NewsLink
-        fields = '__all__'
+        exclude = ('id',)
