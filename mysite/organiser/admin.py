@@ -1,8 +1,14 @@
 from django.contrib import admin
 from organiser.models import NewsLink, Startup, Tag
 
-admin.site.register(NewsLink)
 
+@admin.register(NewsLink)
+class NewsLinkAdmin(admin.ModelAdmin):
+    """Configure NewsLink panel"""
+
+    list_display = ("title", "slug")
+    prepopulated_fields = {"slug": ("title",)}
+    
 
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
