@@ -10,55 +10,46 @@ from rest_framework import generics
 from organiser.serializers import TagSerializer, StartupSerializer, NewsLinkSerializer
 from organiser.models import Tag, Startup, NewsLink
 
-class TagAPIDetail(APIView):
+class TagAPIDetail(generics.RetrieveAPIView):
     'Return JSON for single Tag Object'
 
-    def get(self, request, slug):
-        tag = get_object_or_404(Tag, slug=slug)
-        s_tag = TagSerializer(tag, context={'request': request})
-        return Response(s_tag.data)
+    queryset = Tag.objects.all()
+    serializer_class = TagSerializer
+    lookup_field = 'slug'
 
 
-class TagAPIList(APIView):
+class TagAPIList(generics.ListAPIView):
     'Return JSON for List Tag Object'
 
-    def get(self, request):
-        tag_list = get_list_or_404(Tag)
-        s_tag = TagSerializer(tag_list, context={'request': request}, many=True)
-        return Response(s_tag.data)
+    queryset = Tag.objects.all()
+    serializer_class = TagSerializer
 
 
-class StartupAPIDetail(APIView):
+class StartupAPIDetail(generics.RetrieveAPIView):
     'Return JSON for single Tag Object'
 
-    def get(self, request, slug):
-        tag = get_object_or_404(Startup, slug=slug)
-        s_tag = StartupSerializer(tag, context={'request': request})
-        return Response(s_tag.data)
+    queryset = Startup.objects.all()
+    serializer_class = StartupSerializer
+    lookup_field = 'slug'
 
 
-class StartupAPIList(APIView):
+class StartupAPIList(generics.ListAPIView):
     'Return JSON for List Tag Object'
 
-    def get(self, request):
-        tag_list = get_list_or_404(Startup)
-        s_tag = StartupSerializer(tag_list, context={'request': request}, many=True)
-        return Response(s_tag.data)
+    queryset = Startup.objects.all()
+    serializer_class = StartupSerializer
 
 
-class NewsLinkAPIDetail(APIView):
+class NewsLinkAPIDetail(generics.RetrieveAPIView):
     'Return JSON for single Tag Object'
 
-    def get(self, request, slug):
-        tag = get_object_or_404(NewsLink, slug=slug)
-        s_tag = NewsLinkSerializer(tag, context={'request': request})
-        return Response(s_tag.data)
+    queryset = NewsLink.objects.all()
+    serializer_class = NewsLinkSerializer
+    lookup_field = 'slug'
 
 
-class NewsLinkAPIList(APIView):
+class NewsLinkAPIList(generics.ListAPIView):
     'Return JSON for List Tag Object'
 
-    def get(self, request):
-        tag_list = get_list_or_404(NewsLink)
-        s_tag = NewsLinkSerializer(tag_list, context={'request': request}, many=True)
-        return Response(s_tag.data)
+    queryset = NewsLink.objects.all()
+    serializer_class = NewsLinkSerializer
